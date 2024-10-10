@@ -48,10 +48,46 @@ def delete_student(id):
     conn.commit()
     print(f"Student has been deleted with id {id}")
 
-# add_student('Abdullah', 150, 'TECHSTARTER')
-# update_student(2, "Cansin", 34, "TECHSTARTER")
-delete_student(2)
-show_students()
+# define main function to get the user input
+# user can choose from create, read, update and delete function
+def main():
+    while True:
+        print("\n----- Studentenliste -----")
+        print("1. Student  hinzufügen")
+        print("2. Studentenliste anzeigen")
+        print("3. Student aktualisieren")
+        print("4. Student löschen")       
+        print("5. Programm beenden")
+
+        choice = input("Bitte wähle eine Option (1,2,3,4 oder 5): ")
+
+        if choice == "1":
+            print("Bitte gib die Daten des neuen Studenten ein: ")
+            name = input("name: ")
+            age = input("age: ")
+            course = input("course: ")
+            add_student(name, age, course)
+        elif choice == "2":
+            show_students()
+        elif choice == "3":
+            print("Bitte gib die aktualisierten Daten mit id ein: ")
+            id = input("id: ")
+            name = input("name: ")
+            age = input("age: ")
+            course = input("course: ")
+            update_student(id, name, age, course)
+        elif choice == "4":
+            print("Bitte gib die ID des zu löschenden Studenten ein: ")
+            id = input("id: ")
+            delete_student(id)
+        elif choice == "5":
+            print("Programm wird beendet. Auf Wiedersehen!")
+            break
+        else:
+            print("Ungültige Eingabe! Bitte wähle 1,2,3,4 oder 5")
+
+if __name__ == "__main__":
+    main()
 
 
 
