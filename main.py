@@ -25,10 +25,33 @@ def add_student(name, age, course):
 
 # Erstellung von READ funktion
 def show_students():
-    cursor.execute('SELECT name FROM Students')
+    cursor.execute('SELECT id, name FROM Students')
     students = cursor.fetchall()
     for name in students:
         print(name)
 
-show_students()
+# Update function to update student data
+def update_student(id, name, age, course):
+    cursor.execute('''
+    UPDATE Students SET name = ?, age = ?, course = ?
+    WHERE id = ?               
+    ''',(name, age, course, id))
+    conn.commit()
+    print(f"updated student with id {id}")
+
+# Adding a delete function to delete a student
+
+def delete_student(id):
+    cursor.execute('''
+    DELETE FROM Students WHERE id = ?                
+    ''',(id,))
+    conn.commit()
+    print(f"Student has been deleted with id {id}")
+
 # add_student('Abdullah', 150, 'TECHSTARTER')
+# update_student(2, "Cansin", 34, "TECHSTARTER")
+delete_student(2)
+show_students()
+
+
+
